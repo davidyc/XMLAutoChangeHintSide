@@ -1,18 +1,21 @@
 import xml.etree.ElementTree as ET
-import os  
 
-  '''  f = open( "pages/xml.xml",'rt')
-	data = xml.dom.minidom.parseString(f.read())
-	f.close()
-	element = xml.dom.minidom.Element('id')
-	element.setAttribute('value','newAttr')
-	f = open("pages/xml.xml",'wt')
-	qw = data.toxml()
-	qw = qw.encode('utf-8')
-	f.write(qw)
-	f.close()'''
+ET.register_namespace("", "http://schemas.microsoft.com/netfx/2009/xaml/activities")
+ET.register_namespace("mc","http://schemas.openxmlformats.org/markup-compatibility/2006")
+ET.register_namespace("mva", "clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities")
+ET.register_namespace("njl", "clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json")
+ET.register_namespace("s", "clr-namespace:System;assembly=mscorlib")
+ET.register_namespace("sads", "http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger")
+ET.register_namespace("sap", "http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation")
+ET.register_namespace("sap2010", "http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation")
+ET.register_namespace("scg", "clr-namespace:System.Collections.Generic;assembly=mscorlib")
+ET.register_namespace("sco", "clr-namespace:System.Collections.ObjectModel;assembly=mscorlib")
+ET.register_namespace("ui", "http://schemas.uipath.com/workflow/activities")
+ET.register_namespace("x", "http://schemas.microsoft.com/winfx/2006/xaml")
+ 
 
 tree = ET.parse('1.xaml')
+
 root = tree.getroot()
 
 elements = root.find('{http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation}WorkflowViewState.ViewStateManager')
@@ -29,11 +32,14 @@ for i in element:
 for i in element:
      if i.attrib[mykey] == '314,60':
          print("Yes")
-         i.attrib[mykey] = '00,00'
+         i.attrib[mykey] = '314,60'
 
 
 for i in element:
     print(i.attrib[mykey])
+
+
+tree.write("1.xaml")
 
 
 
