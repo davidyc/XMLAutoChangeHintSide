@@ -18,26 +18,10 @@ tree = ET.parse('1.xaml')
 
 root = tree.getroot()
 
-elements = root.find('{http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation}WorkflowViewState.ViewStateManager')
-element = elements.find('{http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation}ViewStateManager')
 
-print(element)
-mykey = '{http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation}VirtualizedContainerService.HintSize'
 
-for i in element:
-    print(i.attrib[mykey])
-
-for i in element:
-     if i.attrib[mykey] == '314,60':
-         print("Yes")
-         i.attrib[mykey] = '314,60'
-
-for i in element:
-    print(i.attrib[mykey])
-
-tree.write("1.xaml")
+xmlstr = ET.tostring(root, encoding='utf8', method='xml')
 
 
 
-
-  
+print(xmlstr)
