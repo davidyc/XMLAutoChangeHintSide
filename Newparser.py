@@ -1,16 +1,31 @@
 import os 
+import re 
 
-f = open('1.xaml', 'r')
-a = f.readlines()
-f.close()
- 
-n = []
-for i in range(0, len(a)):
-   if -1 != a[i].find('Id'):
-      n.append(a[i].replace('sap:VirtualizedContainerService.HintSize="314,91"', 'sap:VirtualizedContainerService.HintSize="00,00"'))
-   else:
-      n.append(a[i])
- 
+
+fileBefore = open('1.xaml', 'r')
+strFromFB = fileBefore.readlines()
+fileBefore.close()
+
+fileAfter = open('2.xaml', 'r')
+strFromFA = fileAfter.readlines()
+fileAfter.close()
+
+
+arrFA = []
+for i in range(0, len(strFromFA)):  
+      arrFA.append(strFromFA[i])
+
+
+arrFB = []
+for i in range(0, len(strFromFB)): 
+      if strFromFB[i].find("<sap2010:ViewStateData Id=") != -1:         
+         arrFB.append(re.sub("\d+,\d+", "11,00", strFromFB[i]))   
+      else:
+         arrFB.append(strFromFB[i])
+
 f = open('1.xaml', 'w')
-f.writelines(n)
+f.writelines(arrFB)
 f.close()
+
+print("Done!")
+
