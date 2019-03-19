@@ -14,20 +14,24 @@ def FixXAML(newFile, oldFile):
         for i in range(0, len(strFromFA)):  
                 if strFromFA[i].find("<sap2010:ViewStateData Id=") != -1:         
                         arrFA.append(strFromFA[i])
-
+                if strFromFA[i].find("<sads:DebugSymbol.Symbol>") != -1:   
+                        symbolstr = re.findall("<sads:DebugSymbol.Symbol>\S*</sads:DebugSymbol.Symbol>", strFromFA[i])                         
+                                  
         arrFB = []
         for i in range(0, len(strFromFB)):
                 addstr = strFromFB[i]
                 for string in arrFA:
                         number = re.findall('\d+,\d+',string)
-                        sapID = re.findall('<sap2010:ViewStateData Id="\S+"',string)
+                        sapID = re.findall('<sap2010:ViewStateData Id="\S+"',string)      
+                                
                         if strFromFB[i].find(sapID[0]) != -1:         
                                 addstr = re.sub("\d+,\d+", number[0], strFromFB[i]) 
                                 break     
-        
+                        if strFromFB[i].find("<sads:DebugSymbol.Symbol>") != -1:         
+                                addstr = re.sub("<sads:DebugSymbol.Symbol>\S*</sads:DebugSymbol.Symbol>", symbolstr[0], strFromFB[i]) 
+                                break   
                 arrFB.append(addstr)
 
         fileWrite = open(newFile, 'w')
         fileWrite.writelines(arrFB)
         fileWrite.close()
-
