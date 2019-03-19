@@ -1,11 +1,29 @@
 import FuncFixXAML as FFX
 from tkinter import *
 from tkinter import messagebox
+import os
 
 
 def CallFunc():
-    FFX.FixXAML(new.get(), old.get())  
-    messagebox.showinfo("Info", "Done!")
+    if new.get() == "":
+        messagebox.showinfo("Info", "New is empty!")
+    elif old.get() == "":
+        messagebox.showinfo("Info", "Old is empty!")
+    elif os.path.isfile(new.get()) == False:
+        messagebox.showinfo("Info", "New file was not found!")
+    elif os.path.isfile(old.get()) == False:
+        messagebox.showinfo("Info", "Old file was not found!")
+    elif old.get() == new.get():
+        messagebox.showinfo("Info", "New and old is one and the same file!")    
+    else:
+        if new.get().split('.')[-1] != "xaml":
+            messagebox.showinfo("Info", "New is not xaml file!")    
+        elif old.get().split('.')[-1] != "xaml":
+            messagebox.showinfo("Info", "Old is not xaml file!")
+        else:  
+            FFX.FixXAML(new.get(), old.get())
+            messagebox.showinfo("Info", "Done!")
+    
     
 
 root = Tk()

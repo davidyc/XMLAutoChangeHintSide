@@ -31,5 +31,3 @@ def FixXAML(newFile, oldFile):
         fileWrite.writelines(arrFB)
         fileWrite.close()
 
-        print("Done!")
-
