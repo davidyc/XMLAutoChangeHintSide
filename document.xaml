@@ -1,8 +1,0 @@
- <WorkflowViewState.ViewStateManager>
-    <ViewStateManager>    
-      <ViewStateData4 Id="LogMessage_5" VirtualizedContainerServiceHintSize="753,91" />
-      <ViewStateData6 Id="GetRobotAsset_2" VirtualizedContainerServiceHintSize="753,22" />
-      <ViewStateDatay Id="MaximizeWindow_1" VirtualizedContainerServiceHintSize="200,22" />
-      <ViewStateDatay Id="OpenBrowser_1" VirtualizedContainerServiceHintSize="414,121">   
-    </ViewStateManager>
-  </WorkflowViewState.ViewStateManager>
